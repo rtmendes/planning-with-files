@@ -23,11 +23,25 @@ All notable changes to this project will be documented in this file.
 - **Spanish template consistency** — Template and scripts now use consistent Spanish state labels (`**Estado:**`)
 - **Stop hook path corrections** — All language variants now use correct paths in Stop hooks
 
-## Unreleased
+## [2.32.0] - 2026-04-08
 
 ### Fixed
 
 - **Codex session catchup** — `session-catchup.py` now reads Codex rollout JSONL from `~/.codex/sessions`, prefers `CODEX_THREAD_ID` when skipping the current thread, filters subagent and tiny sessions, and detects planning-file updates from structured Codex `patch_apply_end` events.
+
+### Fixed
+
+- **Stop hook fails on Windows Git Bash (MSYS2)** (PR #126, closes #125)
+  - Root cause: MSYS2 treats bare `SD="/c/Users/..."` as a command to execute rather than a variable assignment
+  - Fix: changed `SD="..."` to `export SD="..."` across all 9 SKILL.md variants (Claude Code, Codex, CodeBuddy, Cursor, Factory, Gemini, Mastra Code, OpenCode, + zh/zht)
+
+### Changed
+
+- Version bumped to 2.32.0 across all 12 SKILL.md files, plugin.json, marketplace.json, and CITATION.cff
+
+### Thanks
+
+- @ebrevdo (Eugene Brevdo) for the Codex session catchup rewrite (PR #124)
 
 ## [2.29.0] - 2026-03-24
 
